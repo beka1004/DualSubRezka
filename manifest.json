@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "Rezka Dual Subtitles",
+  "version": "1.0.0",
+  "description": "Показывает русские и английские субтитры одновременно на rezka.si.",
+  "permissions": ["storage"],
+  "host_permissions": ["https://rezka.si/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://rezka.si/*"],
+      "js": ["modules/subtitle-parser.js", "content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["injected/interceptor.js"],
+      "matches": ["https://rezka.si/*"]
+    }
+  ]
+}
